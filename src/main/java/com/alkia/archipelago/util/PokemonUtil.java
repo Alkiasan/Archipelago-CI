@@ -119,7 +119,10 @@ public class PokemonUtil {
                 System.out.println("[ARCHIPELAGO] createPokemon for: " + speciesString + " with aspects: " + aspects);
             }
             PokemonProperties properties = PokemonProperties.Companion.parse(speciesString, " ", "=");
-            Pokemon pokemon = properties.create();
+            Pokemon pokemon = new Pokemon();
+            properties.apply(pokemon);
+            pokemon.initializeMoveset(true);
+            pokemon.initialize();
             if (aspects != null) {
                 pokemon.getAspects().addAll(aspects);
             }
